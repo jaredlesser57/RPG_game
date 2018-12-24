@@ -14,7 +14,6 @@ init()
 from time import sleep
 import re
 from os import system, name
-from playsound import playsound
 import pygame
 
 
@@ -52,7 +51,7 @@ else:
 
 name = input("Enter in your name: ").title()
 choose = input("Start your Journey (y/n)? ").lower()
-# playsound('back.mp3')
+
 
  
 intro = """
@@ -154,13 +153,13 @@ def move_direction():
  
 
             if loc == 6 and "Castle Key" not in inventory:
-                del exits[6]['N']
+                exits[6]['N'] = 6
                 availableExits = ", ".join(exits[loc].keys())
                 print(colored("You see a Castle door, but are unable to open it. Seems it requires a key...", "red"))
             elif loc == 6 and "Castle Key" in inventory and c_used is False:
                 exits[6]['N'] = 7
                 availableExits = ", ".join(exits[loc].keys())
-                print(colored("You used to key to unlock the Castle Gardens door.", "green"))                          
+                print(colored("You used to key to unlock the Castle Gardens door.", "green"))                      
  
 
             direction = input("Available exits are --- " + availableExits + " "+": ").upper()
@@ -208,7 +207,7 @@ def move_direction():
 
 if choose == "yes" or choose == 'y':
     for char in intro:
-        sleep(0.033)
+        sleep(0.010)
         cprint(char, 'grey', attrs=['bold'], end="")
     move_direction()
 elif choose == "no" or choose =='n':
